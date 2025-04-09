@@ -149,6 +149,11 @@ namespace VulnerableApp.Controllers
             return View(user);
         }
 
+        [HTTPGet("{id}")]
+        public async Task<IActionResult> ViewProfile(int id){
+            string 
+        }
+
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();

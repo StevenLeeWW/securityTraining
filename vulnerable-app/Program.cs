@@ -10,6 +10,15 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+service.AddAuthorization(options =>
+{
+    // Missing role-based authorization
+    options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("RequireUserRole", policy => policy.RequireRole("User"));
+});
+
+builder.Services.AddScoped<IAuthService, InsecureAuthService>(); // Vulnerable service registration
+
 // VULNERABILITY: Configure insecure logging
 builder.WebHost.ConfigureKestrel(options =>
 {
