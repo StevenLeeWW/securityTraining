@@ -1,8 +1,12 @@
-public class UserResourceAuthorizationHandler : AuthorizationHandler<UserResourceRequirement>
+using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using VulnerableApp.Models;
+
+public class UserResourceAuthorizationHandler : AuthorizationHandler<UserResourceRequirement, User>
 {
     protected override Task HandleRequirementAsync(
         AuthorizationHandlerContext context,
-        UserResourceRequirement requirement
+        UserResourceRequirement requirement,
         User resource)
     {
         var currentUserId = int.Parse(context.User.FindFirst("UserId")?.Value ?? "0");
@@ -12,7 +16,7 @@ public class UserResourceAuthorizationHandler : AuthorizationHandler<UserResourc
         }
         else
         {
-context.Fail();
+            context.Fail();
         }
  
         return Task.CompletedTask;

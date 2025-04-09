@@ -7,6 +7,8 @@ using VulnerableApp.Services;
 using Microsoft.AspNetCore.Identity;
 using System;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Authorization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -108,6 +108,23 @@ namespace VulnerableApp.Controllers
             return RedirectToAction("Login");
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ViewProfile(int id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, user, "UserResourcePolicy");
+            if (!authorizationResult.Succeeded)
+            {
+                return Forbid();
+            }
+            return View(user);
+        }
+
+
         public IActionResult Profile()
         {
             // VULNERABILITY: Missing authentication check
@@ -149,10 +166,7 @@ namespace VulnerableApp.Controllers
             return View(user);
         }
 
-        [HTTPGet("{id}")]
-        public async Task<IActionResult> ViewProfile(int id){
-            string 
-        }
+        
 
         public IActionResult Logout()
         {
