@@ -14,6 +14,8 @@ sleep 10
 # Start the web application
 docker compose up -d web-security-lab
 
+docker exec -i web-security-lab-db /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "P@ssw0rd!" -C -N -t 30 -b -e -i /docker-entrypoint-initdb.d/init.sql
+
 # Add users with weak passwords for authentication exercises
 
 -- Add users with weak passwords

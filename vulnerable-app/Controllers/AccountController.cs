@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using VulnerableApp.Models;
 using VulnerableApp.Services;
 using VulnerableApp.Data;
+using System.Text.RegularExpressions;
 using System;
 
 namespace VulnerableApp.Controllers
@@ -68,6 +69,30 @@ namespace VulnerableApp.Controllers
             
             // VULNERABILITY: SQL Injection possible here with user input
             // (Implementation simplified for example)
+            var errors = new List<string>();
+            if (username == "" || username == null || password == "" || password == null || email == "" || email == null || fullName == "" || fullName == null)
+            {
+                errors.Add("All fields are required");
+            }
+            else if (password.Length < 6)
+            {
+                errors.Add("Password must be at least 6 characters long");
+            }
+            // if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            // {
+            //     errors.Add("Invalid email format");
+            // }
+            // if (Regex.IsMatch(password, @"[0-9]") == false || Regex.IsMatch(password, @"[a-zA-Z]") == false)
+            // {
+            //     errors.Add("Password must contain both letters and numbers");
+            // }
+            if (errors.Count > 0)
+            {
+                ViewBag.Errors = errors;
+                return View();
+            }
+
+
             var newUser = new User
             {
                 Username = username,

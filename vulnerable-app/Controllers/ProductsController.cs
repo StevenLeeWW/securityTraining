@@ -30,8 +30,13 @@ namespace VulnerableApp.Controllers
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand($"SELECT * FROM Products WHERE Name LIKE '%{search}%' OR Description LIKE '%{search}%'", connection);
+                // var command = new SqlCommand($"SELECT * FROM Products WHERE Name LIKE '%{search}%' OR Description LIKE '%{search}%'", connection);
                 
+                var command = new SqlCommand("SELECT * FROM Products WHERE Name LIKE @search OR Description LIKE @search", connection);
+                
+                // Add parameters to the command
+                command.Parameters.AddWithValue("@search", "%" + search + "%");
+
                 // Execute the query and convert to list
                 var adapter = new SqlDataAdapter(command);
                 var dataTable = new DataTable();

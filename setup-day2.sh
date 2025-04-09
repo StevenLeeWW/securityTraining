@@ -14,11 +14,13 @@ sleep 10
 # Start the web application
 docker compose up -d web-security-lab
 
+docker exec -i web-security-lab-db /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "P@ssw0rd!" -C -N -t 30 -b -e -i /docker-entrypoint-initdb.d/init.sql
+
 # Setup specific SQL injection examples in the database
--- Add a product with SQL injection payload
-INSERT INTO Products (Name, Description, Price, Category, ImageUrl)
-VALUES ('Malicious Product', 'This product has a description with an SQL injection payload: '' OR 1=1 --', 19.99, 'Hacking', '/images/malicious.jpg');
-"
+# -- Add a product with SQL injection payload
+# INSERT INTO Products (Name, Description, Price, Category, ImageUrl)
+# VALUES ('Malicious Product', 'This product has a description with an SQL injection payload: '' OR 1=1 --', 19.99, 'Hacking', '/images/malicious.jpg');
+
 
 echo "Day 2 environment is ready!"
 echo "Access the vulnerable web application at: http://localhost:8080"

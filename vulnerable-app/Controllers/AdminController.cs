@@ -51,16 +51,23 @@ namespace VulnerableApp.Controllers
 
         public IActionResult RunCommand(string command)
         {
+            string[] allowedCommands = {"ls", "pwd", "whoami", "echo"}; // Example of allowed commands
             // VULNERABILITY: Command Injection
-            if (string.IsNullOrEmpty(command))
+            string commandName = command?.Split(' ')[0];
+            if (commandName == "" || commandName == null || !allowedCommands.Contains(commandName))
             {
+                ViewBag.Error = "Invalid command or command not allowed.";
                 return View();
             }
+            // if (string.IsNullOrEmpty(command))
+            // {
+            //     return View();
+            // }
             
             try
             {
                 // Execute the command directly
-                var processInfo = new ProcessStartInfo("/bin/bash", "/c " + command)
+                var processInfo = new ProcessStartInfo("/bin/bash", "-c \"" + command + "\"")
                 {
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
