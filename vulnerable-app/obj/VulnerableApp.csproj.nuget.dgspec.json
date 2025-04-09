@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/ljkhoo/web-security-lab/vulnerable-app/VulnerableApp.csproj": {}
+    "/home/student/web-security-lab/vulnerable-app/VulnerableApp.csproj": {}
   },
   "projects": {
-    "/home/ljkhoo/web-security-lab/vulnerable-app/VulnerableApp.csproj": {
+    "/home/student/web-security-lab/vulnerable-app/VulnerableApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ljkhoo/web-security-lab/vulnerable-app/VulnerableApp.csproj",
+        "projectUniqueName": "/home/student/web-security-lab/vulnerable-app/VulnerableApp.csproj",
         "projectName": "VulnerableApp",
-        "projectPath": "/home/ljkhoo/web-security-lab/vulnerable-app/VulnerableApp.csproj",
-        "packagesPath": "/home/ljkhoo/.nuget/packages/",
-        "outputPath": "/home/ljkhoo/web-security-lab/vulnerable-app/obj/",
+        "projectPath": "/home/student/web-security-lab/vulnerable-app/VulnerableApp.csproj",
+        "packagesPath": "/home/student/.nuget/packages/",
+        "outputPath": "/home/student/web-security-lab/vulnerable-app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/ljkhoo/.nuget/NuGet/NuGet.Config"
+          "/home/student/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -32,18 +32,16 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.0, )"
@@ -68,20 +66,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.linux-x64",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -90,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
         }
       }
     }

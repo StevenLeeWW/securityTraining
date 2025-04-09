@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Authorization;
+@inject IAuthorizationService AuthorizationService
+
 @model List<VulnerableApp.Models.Product>
 @{
     ViewData["Title"] = "Manage Products";
@@ -28,8 +31,13 @@
                 <td>@product.Category</td>
                 <td>$@product.Price</td>
                 <td>
-                    <a href="/Products/Edit/@product.ProductId" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="/Products/Delete/@product.ProductId" class="btn btn-sm btn-danger">Delete</a>
+                    @if (await AuthorizationService.AuthorizeAsync(User, "CanEditProducts").Succeeded) {
+                        <a href="/Products/Edit/@product.ProductId" class="btn btn-sm btn-primary">Edit</a>
+                    }
+                    @if (await AuthorizationService.AuthorizeAsync(User, "CanDeleteProducts").Succeeded) {
+                        <a href="/Products/Delete/@product.ProductId" class="btn btn-sm btn-danger">Delete</a>
+                    }
+                    
                 </td>
             </tr>
         }

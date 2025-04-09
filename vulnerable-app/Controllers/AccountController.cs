@@ -108,22 +108,6 @@ namespace VulnerableApp.Controllers
             return RedirectToAction("Login");
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ViewProfile(int id)
-        {
-            var user = await _userManager.FindByIdAsync(id.ToString());
-            if (user == null)
-            {
-                return NotFound();
-            }
-            var authorizationResult = await _authorizationService.AuthorizeAsync(User, user, "UserResourcePolicy");
-            if (!authorizationResult.Succeeded)
-            {
-                return Forbid();
-            }
-            return View(user);
-        }
-
 
         public IActionResult Profile()
         {
@@ -138,6 +122,22 @@ namespace VulnerableApp.Controllers
             int id = int.Parse(userId);
             var user = _context.Users.Find(id);
             
+            return View(user);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ViewProfile(int id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, user, "UserResourcePolicy");
+            if (!authorizationResult.Succeeded)
+            {
+                return Forbid();
+            }
             return View(user);
         }
 

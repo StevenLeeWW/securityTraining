@@ -8,10 +8,12 @@ using System.Diagnostics;
 using System.Collections.Generic;
 
 namespace VulnerableApp.Controllers
-{     public class AdminController : Controller
-    {
+{       
+    [Authorize(Roles = "Admin")]
+    public class AdminController : Controller
+        {
         private readonly ApplicationDbContext _context;
-
+        
         public AdminController(ApplicationDbContext context)
         {
             _context = context;
