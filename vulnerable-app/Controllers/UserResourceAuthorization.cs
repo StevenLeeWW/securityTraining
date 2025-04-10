@@ -5,7 +5,7 @@ using VulnerableApp.Authorization;
 
 namespace VulnerableApp.Authorization
 {
-    public class UserResourceAuthorizationHandler : AuthorizationHandler<UserResourceRequirement, User>
+    public class UserResourceAuthorization : AuthorizationHandler<UserResourceRequirement, User>
     {
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,

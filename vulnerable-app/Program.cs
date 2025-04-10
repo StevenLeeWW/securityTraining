@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-service.AddAuthorization(options =>
+builder.Services.AddAuthorization(options =>
 {
     // Missing role-based authorization
     options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
@@ -46,8 +46,21 @@ builder.Services.AddScoped<IAuthService, InsecureAuthService>();
 builder.Services.AddSession(options =>
 {
     // No secure configuration
-    options.IdleTimeout = TimeSpan.FromHours(24); // Excessively long timeout
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
     // No cookie security settings
+    options.Cookie.HttpOnly = true; // Missing secure flag
+    options.Cookie.IsEssential = true; // Missing essential flag
+    options.Cookie.SameSite = SameSiteMode.Strict; // Missing SameSite attribute
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Missing secure policy
+});
+
+builder.Services.AddAntiforgery(options =>
+{
+    // Missing CSRF protection configuration
+    options.HeaderName = "X-XSRF-TOKEN"; // Missing header name
+    options.Cookie.HttpOnly = true; // Missing secure flag
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Missing secure policy
+    options.Cookie.SameSite = SameSiteMode.Strict; // Missing SameSite attribute
 });
 
 // Missing CSRF protection configuration

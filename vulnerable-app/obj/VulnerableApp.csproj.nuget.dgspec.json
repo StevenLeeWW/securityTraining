@@ -40,7 +40,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authorization": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[6.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -53,6 +53,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.3, )"
+            },
+            "System.Diagnostics.DiagnosticSource": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
