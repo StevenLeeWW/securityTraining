@@ -50,6 +50,7 @@ ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Create directory for exercise solutions
 RUN mkdir -p /exercises/solutions
+COPY certificates/server.pfx /app/server.pfx
 
 # Create a welcome message with instructions
 RUN echo 'echo "Welcome to the Web Security Lab!\n\nThis environment contains a deliberately vulnerable application for learning.\nAccess the application at http://localhost:8080\n\nFor security tools, access OWASP ZAP at http://localhost:8090\n\nType \"help\" for more commands."' > /root/.bashrc

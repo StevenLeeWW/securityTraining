@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/student/web-security-lab/vulnerable-app/VulnerableApp.csproj": {}
+    "/home/student/naim/web-security-lab/vulnerable-app/VulnerableApp.csproj": {}
   },
   "projects": {
-    "/home/student/web-security-lab/vulnerable-app/VulnerableApp.csproj": {
+    "/home/student/naim/web-security-lab/vulnerable-app/VulnerableApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/student/web-security-lab/vulnerable-app/VulnerableApp.csproj",
+        "projectUniqueName": "/home/student/naim/web-security-lab/vulnerable-app/VulnerableApp.csproj",
         "projectName": "VulnerableApp",
-        "projectPath": "/home/student/web-security-lab/vulnerable-app/VulnerableApp.csproj",
+        "projectPath": "/home/student/naim/web-security-lab/vulnerable-app/VulnerableApp.csproj",
         "packagesPath": "/home/student/.nuget/packages/",
-        "outputPath": "/home/student/web-security-lab/vulnerable-app/obj/",
+        "outputPath": "/home/student/naim/web-security-lab/vulnerable-app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/student/.nuget/NuGet/NuGet.Config"
@@ -40,7 +40,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authorization": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -53,10 +53,6 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.3, )"
-            },
-            "System.Diagnostics.DiagnosticSource": {
-              "target": "Package",
-              "version": "[6.0.0, )"
             }
           },
           "imports": [
@@ -70,6 +66,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -78,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.115/RuntimeIdentifierGraph.json"
         }
       }
     }

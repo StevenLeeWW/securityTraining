@@ -2,28 +2,21 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>Register New Account</h1>
 @if (ViewBag.Errors != null)
 {
     <div class="alert alert-danger">
-    <ul>
-        @foreach (var error in ViewBag.Errors)
-        {
-            <li>@error</li>
-        }
-    </ul>
-    
+        <ul>
+            @foreach (var error in ViewBag.Errors as List<string>)
+            {
+                <li>@error</li>
+            }
+        </ul>
     </div>
 }
 
-@if (ViewBag.Success != null)
-{
-    <div class="alert alert-success">
-        @ViewBag.Success
-    </div>
-}
+<h1>Register New Account</h1>
+
 <form method="post">
-
     <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" class="form-control" />
@@ -36,13 +29,12 @@
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" class="form-control" />
+        <input type="text" id="email" name="email" class="form-control" />
     </div>
     <div class="form-group">
         <label for="fullName">Full Name:</label>
         <input type="text" id="fullName" name="fullName" class="form-control" />
     </div>
-    <br />
     <button type="submit" class="btn btn-primary">Register</button>
 </form>
 

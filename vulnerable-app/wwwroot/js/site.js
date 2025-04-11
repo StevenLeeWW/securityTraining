@@ -2,7 +2,7 @@
 // This file intentionally contains some vulnerable code for demonstration purposes
 
 // Wait for the document to be loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Log when the application has been loaded
     console.log("Vulnerable Web Application initialized");
 
@@ -42,17 +42,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Set up calculator if it exists on the page
-    document.addEventListener('DOMContentLoaded', function() {
-        const calcButton = document.getElementById('calc-button');
-        if (calcButton) {
-            calcButton.addEventListener('click', calculateFromInput);
-        }
-    });
-    
+    const calcButton = document.getElementById('calc-button');
+    if (calcButton) {
+        calcButton.addEventListener('click', calculateFromInput);
+    }
+
     // Search form validation (insufficient)
     const searchForm = document.querySelector('form[action*="Products"]');
     if (searchForm) {
-        searchForm.addEventListener('submit', function(event) {
+        searchForm.addEventListener('submit', function (event) {
             const searchInput = document.querySelector('input[name="search"]');
             // VULNERABILITY: Weak client-side validation that can be bypassed
             if (searchInput.value.includes('--') || searchInput.value.includes(';')) {
@@ -65,11 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up command execution form
     const commandForm = document.getElementById('command-form');
     if (commandForm) {
-        commandForm.addEventListener('submit', function(event) {
+        commandForm.addEventListener('submit', function (event) {
             // VULNERABILITY: Weak command validation
             const commandInput = document.getElementById('command');
             const dangerousCommands = ['rm', 'del', 'format', 'drop'];
-            
+
             for (const cmd of dangerousCommands) {
                 if (commandInput.value.toLowerCase().includes(cmd)) {
                     const confirm = window.confirm('This command may be dangerous. Run anyway?');
@@ -86,15 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Remember me feature for login
     const rememberCheckbox = document.getElementById('rememberMe');
     const usernameInput = document.getElementById('username');
-    
+
     if (rememberCheckbox && usernameInput) {
         // VULNERABILITY: Using localStorage for sensitive data
         if (localStorage.getItem('rememberedUser')) {
             usernameInput.value = localStorage.getItem('rememberedUser');
             rememberCheckbox.checked = true;
         }
-        
-        rememberCheckbox.addEventListener('change', function() {
+
+        rememberCheckbox.addEventListener('change', function () {
             if (this.checked && usernameInput.value) {
                 localStorage.setItem('rememberedUser', usernameInput.value);
             } else {
